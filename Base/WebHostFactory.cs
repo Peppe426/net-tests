@@ -26,6 +26,7 @@ public class WebHostFactory<TEntryPoint, TContext> : WebApplicationFactory<TEntr
     public WebHostFactory(Action<IServiceCollection>? configureServices = null)
     {
         _configureServices = configureServices;
+        SQLitePCL.Batteries.Init();
 
         // Only initialize the connection if TContext is not null
         if (typeof(TContext) != typeof(DbContext) && typeof(TContext) != null)
